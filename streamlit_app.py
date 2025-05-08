@@ -56,7 +56,7 @@ def main():
     st.plotly_chart(visualize_pointclouds([pcd_source, pcd_target],
                                             subsample_factor=subsample_factor,
                                             marker_size=1,
-                                            names=["Source", "Target"]),
+                                            names=["🟢 Source", "🔴 Target"]),
                     use_container_width=True)
 
 
