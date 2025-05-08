@@ -19,6 +19,10 @@ def main():
     with col2:
         uploaded_pcd_target = st.file_uploader("Upload Target Pointcloud", type=["ply", "pcd", "xyz", "xyzrgb"])
 
+    use_demo_pointclouds = st.button("Use Demo Pointclouds")
+
+    pcd_target, pcd_source = None, None
+
     if uploaded_pcd_source and uploaded_pcd_target:
         # save to tempfile, preserving the extension
         source_extension = uploaded_pcd_source.name.split(".")[-1]
@@ -33,6 +37,12 @@ def main():
             temp_file.seek(0)
             pcd_target = o3d.io.read_point_cloud(temp_file.name)
 
+    if use_demo_pointclouds:
+        demo_icp_pcds = o3d.data.DemoICPPointClouds()
+        pcd_source = o3d.io.read_point_cloud(demo_icp_pcds.paths[0])
+        pcd_target = o3d.io.read_point_cloud(demo_icp_pcds.paths[1])
+    
+    if pcd_source is not None and pcd_target is not None:
         num_points = len(pcd_source.points) + len(pcd_target.points)
         subsample_factor = max(1, num_points // MAX_POINTS)
         st.plotly_chart(visualize_pointclouds([pcd_source, pcd_target],
