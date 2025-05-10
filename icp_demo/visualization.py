@@ -34,9 +34,9 @@ def visualize_pointclouds(pointclouds: list[o3d.geometry.PointCloud],
 
     if camera is None:
         camera = dict(
-            up=dict(x=0, y=0, z=1),
-            center=dict(x=0, y=0.27, z=0),
-            eye=dict(x=1.6, y=-0.4, z=0.4)
+            up=dict(x=0, y=-1, z=0),
+            center=dict(x=0, y=0, z=0),
+            eye=dict(x=1.0, y=-0.4, z=-0.7)
         )
 
     layout = dict(
