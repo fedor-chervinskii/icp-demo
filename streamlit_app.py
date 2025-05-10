@@ -101,7 +101,7 @@ def main():
             st.error("Invalid transformation matrix format. Please enter a valid JSON array.")
             st.stop()
 
-    if st.button("Run ICP"):
+    if st.button("Run ICP", type="primary"):
         st.session_state.icp_ran = True
         st.session_state.logs = []
 
